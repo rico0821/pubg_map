@@ -10,7 +10,7 @@ class TeleProcessor:
         
         with open(telemetryFile) as f:
             self.telemetry = json.load(f)
-            
+
     def getPlayerXY(self, player=None):
         
         loc_data = [data for data in self.telemetry if data['_T']=='LogPlayerPosition']
@@ -52,6 +52,18 @@ class TeleProcessor:
                   'y':data['victim']['location']['y']} for data in kills_data]
         
         return kills
+    
+    def getItemFindsXY(self, player=None):
+        
+        items_data = [data for data in self.telemetry if data['_T']=='LogItemPickUp']
+        
+        if player:
+            items_data = [data for data in items_data if data['character']['name']==player]
+            
+        item_finds = [{'x' : data['character']['location']['x'],
+                           'y' : data['character']['location']['y']} for data in items_data]
+        
+        return item_finds
     
     def getMagneticXY(self):
         
