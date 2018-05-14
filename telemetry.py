@@ -55,7 +55,7 @@ class TeleProcessor:
     
     def getItemFindsXY(self, player=None):
         
-        items_data = [data for data in self.telemetry if data['_T']=='LogItemPickUp']
+        items_data = [data for data in self.telemetry if data['_T']=='LogItemPickup']
         
         if player:
             items_data = [data for data in items_data if data['character']['name']==player]
